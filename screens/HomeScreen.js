@@ -13,6 +13,8 @@ import { WebBrowser } from "expo";
 
 import { MonoText } from "../components/StyledText";
 
+import sendMessage from "../SendSMSMessage";
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
@@ -27,15 +29,27 @@ export default class HomeScreen extends React.Component {
         >
           <View style={styles.helpContainer}>
             <Button
-              onPress={() => {
-                Alert.alert("ALERT");
-              }}
+              onPress={sendMessage}
               title="Send Location"
               color="#841584"
               accessibilityLabel="Learn more about this purple button"
             />
           </View>
         </ScrollView>
+
+        <View style={styles.tabBarInfoContainer}>
+          <Text style={styles.tabBarInfoText}>
+            This is a tab bar. You can edit it in:
+          </Text>
+
+          <View
+            style={[styles.codeHighlightContainer, styles.navigationFilename]}
+          >
+            <MonoText style={styles.codeHighlightText}>
+              navigation/MainTabNavigator.js
+            </MonoText>
+          </View>
+        </View>
       </View>
     );
   }
