@@ -8,7 +8,7 @@ import {
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
-import SettingsScreen from "../SettingsScreen";
+import ContactForm from "../screens/ContactForm";
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen
@@ -42,11 +42,11 @@ LinksStack.navigationOptions = {
   )
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen
+const ContactFormStack = createStackNavigator({
+  Settings: ContactForm
 });
 
-SettingsStack.navigationOptions = {
+ContactFormStack.navigationOptions = {
   tabBarLabel: "Settings",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -57,7 +57,7 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
+  ContactFormStack,
   HomeStack,
-  LinksStack,
-  SettingsStack
+  LinksStack
 });
