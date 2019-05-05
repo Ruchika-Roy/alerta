@@ -21,6 +21,9 @@ export default class UselessTextInput extends Component {
           style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
           onChangeText={text => this.setState({ contact1: text })}
           value={this.state.contact1}
+          // maxLength = {10}
+          // placeholder = {"Enter contact number"}
+          // textContentType = {"telephoneNumber"}
         />
         <Text>Contact 2:</Text>
         <TextInput
@@ -46,7 +49,12 @@ export default class UselessTextInput extends Component {
           onChangeText={text => this.setState({ contact5: text })}
           value={this.state.contact5}
         />
-        <Button>
+        <Button
+          onPress={() => this.props.navigation.navigate("HomeStack")}
+          title="Save"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
       </View>
     );
   }
