@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": "https://7z-i9x.anonymous.alerta.exp.direct",
-  "packagerNgrokUrl": "https://packager.7z-i9x.anonymous.alerta.exp.direct",
-  "ngrokPid": 54933
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

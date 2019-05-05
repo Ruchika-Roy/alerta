@@ -36,7 +36,7 @@ async function sendMessage() {
     let contacts = parseContactObjectToArray(contactObject);
     const { result } = await SMS.sendSMSAsync(
       contacts,
-      "Hi Friends! I'm about to go on a first date! Here's my location: http://www.google.com/maps/place/43.034447,-87.911695"
+      "Hi Friends! I'm about to go on a date! Yay! Here's my location: http://www.google.com/maps/place/43.034447,-87.911695"
     );
   } catch (e) {
     console.log(e);
