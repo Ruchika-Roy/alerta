@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { AppRegistry, Button, TextInput, View, Text } from "react-native";
+import * as contactAccessor from "../manageContacts";
 
 export default class UselessTextInput extends Component {
   constructor(props) {
@@ -11,8 +12,23 @@ export default class UselessTextInput extends Component {
       contact4: "",
       contact5: ""
     };
+
+    this.loadContacts = this.loadContacts.bind(this);
+    this.saveContacts = this.saveContacts.bind(this);
   }
 
+  async saveContacts() {
+    await contactAccessor.saveContacts(this.state);
+    this.props.navigation.navigate("HomeStack");
+  }
+  componentDidMount() {
+    this.loadContacts();
+  }
+
+  async loadContacts() {
+    var contacts = await contactAccessor.getContacts(this.state);
+    this.setState({ ...contacts });
+  }
   render() {
     return (
       <View>
@@ -50,7 +66,7 @@ export default class UselessTextInput extends Component {
           value={this.state.contact5}
         />
         <Button
-          onPress={() => this.props.navigation.navigate("HomeStack")}
+          onPress={this.saveContacts}
           title="Save"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
