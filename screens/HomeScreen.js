@@ -14,11 +14,25 @@ import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
 
 import sendMessage from "../SendSMSMessage";
+import findCoordinates from "../Geolocation";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
+
+  async findCoordinates() {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const location = JSON.stringify(position);
+        this.setState({ location });
+        console.log("STATE");
+        console.log(this.state);
+      },
+      error => Alert.alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  }
 
   render() {
     return (
@@ -27,8 +41,9 @@ export default class HomeScreen extends React.Component {
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
         >
-          <View style={styles.helpContainer}>
+          <View style={styles.button}>
             <Button
+              // onPress={this.findCoordinates}
               onPress={sendMessage}
               title="Send Location"
               color="#841584"
@@ -38,17 +53,9 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>
-            This is a tab bar. You can edit it in:
-          </Text>
-
           <View
             style={[styles.codeHighlightContainer, styles.navigationFilename]}
-          >
-            <MonoText style={styles.codeHighlightText}>
-              navigation/MainTabNavigator.js
-            </MonoText>
-          </View>
+          />
         </View>
       </View>
     );
@@ -110,17 +117,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: "contain",
-    marginTop: 3,
-    marginLeft: -10
-  },
-  getStartedContainer: {
-    alignItems: "center",
-    marginHorizontal: 50
-  },
   homeScreenFilename: {
     marginVertical: 7
   },
@@ -137,6 +133,11 @@ const styles = StyleSheet.create({
     color: "rgba(96,100,109, 1)",
     lineHeight: 24,
     textAlign: "center"
+  },
+  button: {
+    alignItems: "center",
+    marginTop: 250,
+    marginBottom: 20
   },
   tabBarInfoContainer: {
     position: "absolute",
